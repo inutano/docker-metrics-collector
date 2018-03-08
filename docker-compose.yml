@@ -13,8 +13,6 @@ services:
       - "MAX_MAP_COUNT=${MAX_MAP_COUNT}"
 
   dmc-setup:
-    depends_on:
-      - elk
     image: inutano/dmc-setup:alpha
     container_name: dmc-setup
     environment:
