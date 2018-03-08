@@ -15,35 +15,19 @@
 ```
 $ git clone https://github.com/inutano/docker-metrics-collector
 $ cd docker-metrics-collector
-$ bash ./bin/setup.sh
 $ docker-compose up &
-$ bash ./bin/index_mapping.sh
 ```
 
 and you're ready to collect resource usage from docker container execution!
 
 ### Send metrics data to an external Elasticsearch server
 
+Use shell environment variable to set hostname and port of Elasticsearch.
+
 ```
 $ git clone https://github.com/inutano/docker-metrics-collector
 $ cd docker-metrics-collector
-$ bash ./bin/setup.sh
-```
-
-Edit `docker-compose.yml`
-
-```
-environment:
-  - ES_HOST=<your Elasticsearch endpoint>
-  - ES_PORT=<your Elasticsearch port number>
-```
-
-then run
-
-```
-$ docker-compose up telegraf &
-$ docker-compose up fluentd &
 $ export ES_HOST=<your Elasticsearch endpoint>
 $ export ES_PORT=<your Elasticsearch port number>
-$ bash ./bin/index_mapping.sh
+$ docker-compose up dmc-setup telegraf fluentd &
 ```
