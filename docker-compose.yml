@@ -12,7 +12,20 @@ services:
     environment:
       - MAX_MAP_COUNT=262144 # setting for docker4mac
 
+  dmc-setup:
+    depends_on:
+      - elk
+    image: inutano/dmc-setup:alpha
+    container_name: dmc-setup
+    environment:
+      - ES_HOST=elk
+      - ES_PORT=9200
+    volumes:
+      - .:/work
+
   telegraf:
+    depends_on:
+      - dmc-setup
     image: telegraf:1.5.0-alpine
     container_name: telegraf
     volumes:
@@ -21,6 +34,8 @@ services:
       - ./log/telegraf:/var/log/telegraf
 
   fluentd:
+    depends_on:
+      - dmc-setup
     image: inutano/fluentd:alpha
     container_name: fluentd
     environment:

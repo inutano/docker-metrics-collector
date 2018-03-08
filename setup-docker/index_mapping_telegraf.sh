@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-curl --header "Content-Type:application/json" -XPUT ${ES_HOST}:${ES_PORT}/telegraf -d '{
+curl -s --header "Content-Type:application/json" -XPUT ${ES_HOST}:${ES_PORT}/telegraf -d '{
   "mappings": {
     "docker_metrics": {
       "properties": {
