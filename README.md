@@ -6,7 +6,7 @@
 
 ## How it works
 
-`docker-compose up` runs three containers named `elk`, `telegraf`, and `fluentd`. `telegraf` watches containers running on the same host except for `elk`, `fluentd`, and itself, then output `./log/telegraf/metrics.json`. `fluentd` send `metrics.json` to Elasticsearch server using `tail -f` method. Collected metrics data can be visualized via `http://localhost:5601` by Kibana.
+`docker-compose up` runs four containers named `elk`, `dmc-setup`, `telegraf`, and `fluentd`. `dmc-setup` creates index mapping on specified Elasticsearch endpoint. `telegraf` watches containers running on the same host except for `elk`, `fluentd`, and itself, then output `./log/telegraf/metrics.json`. `fluentd` send `metrics.json` to Elasticsearch server using `tail -f` method. Collected metrics data can be visualized via `http://localhost:5601` by Kibana.
 
 ## Get Started
 
@@ -29,5 +29,5 @@ $ git clone https://github.com/inutano/docker-metrics-collector
 $ cd docker-metrics-collector
 $ export ES_HOST=<your Elasticsearch endpoint>
 $ export ES_PORT=<your Elasticsearch port number>
-$ docker-compose up dmc-setup telegraf fluentd &
+$ docker-compose up telegraf &
 ```
