@@ -10,7 +10,7 @@ services:
       - 9200:9200 # elasticsearch
       # - 5044:5044 # logstash - not using
     environment:
-      - MAX_MAP_COUNT=262144 # setting for docker4mac
+      - "MAX_MAP_COUNT=${MAX_MAP_COUNT}"
 
   dmc-setup:
     depends_on:
@@ -18,8 +18,8 @@ services:
     image: inutano/dmc-setup:alpha
     container_name: dmc-setup
     environment:
-      - ES_HOST=elk
-      - ES_PORT=9200
+      - "ES_HOST=${ES_HOST}"
+      - "ES_PORT=${ES_PORT}"
     volumes:
       - .:/work
 
@@ -39,8 +39,8 @@ services:
     image: inutano/fluentd:alpha
     container_name: fluentd
     environment:
-      - ES_HOST=elk
-      - ES_PORT=9200
+      - "ES_HOST=${ES_HOST}"
+      - "ES_PORT=${ES_PORT}"
     volumes:
       - ./log/telegraf:/var/log/telegraf
       - ./conf/fluent/fluent.conf:/etc/fluent/fluent.conf:ro
