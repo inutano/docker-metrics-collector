@@ -1,4 +1,6 @@
-curl --header "Content-Type:application/json" -XPUT localhost:9200/workflow -d '{
+#!/bin/bash
+
+curl --header "Content-Type:application/json" -XPUT ${ES_HOST}:${ES_PORT}/workflow -d '{
   "mappings": {
     "workflow_log": {
       "properties": {
