@@ -12,9 +12,9 @@ services:
     environment:
       - "MAX_MAP_COUNT=${MAX_MAP_COUNT}"
 
-  dmc-setup:
-    image: inutano/dmc-setup:alpha
-    container_name: dmc-setup
+  run-dmc:
+    image: quay.io/inutano/run-dmc:0.1.0
+    container_name: run-dmc
     environment:
       - "ES_HOST=${ES_HOST}"
       - "ES_PORT=${ES_PORT}"
@@ -23,8 +23,8 @@ services:
 
   fluentd:
     depends_on:
-      - dmc-setup
-    image: inutano/fluentd:alpha
+      - run-dmc
+    image: quay.io/inutano/fluentd:0.1.0
     container_name: fluentd
     environment:
       - "ES_HOST=${ES_HOST}"
@@ -40,7 +40,7 @@ services:
 
   telegraf:
     depends_on:
-      - dmc-setup
+      - run-dmc
       - fluentd
     image: telegraf:1.5.0-alpine
     container_name: telegraf
