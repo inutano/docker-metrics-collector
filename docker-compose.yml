@@ -11,6 +11,8 @@ services:
       # - 5044:5044 # logstash - not using
     environment:
       - "MAX_MAP_COUNT=${MAX_MAP_COUNT}"
+    # Uncomment the line below to persist log data
+    #volumes: "${HOME}/.cwlmetrics/data/elk/elk-data":/var/lib/elasticsearch #PERSIST_DATA
 
   run-dmc:
     image: quay.io/inutano/run-dmc:0.1.0
