@@ -13,7 +13,7 @@ services:
       - "MAX_MAP_COUNT=${MAX_MAP_COUNT}"
     # Uncomment the line below to persist log data
     #volumes:                                                           #PERSIST_DATA
-    #  - "${HOME}/.cwlmetrics/data/elk/elk-data":/var/lib/elasticsearch #PERSIST_DATA
+    #  - "${HOME}/.cwlmetrics/data/elk/elk-data:/var/lib/elasticsearch" #PERSIST_DATA
 
   run-dmc:
     image: quay.io/inutano/run-dmc:0.1.0
