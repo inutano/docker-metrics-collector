@@ -16,7 +16,7 @@ services:
     #  - "${HOME}/.cwlmetrics/data/elk/elk-data:/var/lib/elasticsearch" #PERSIST_DATA
 
   run-dmc:
-    image: quay.io/inutano/run-dmc:0.1.0
+    image: quay.io/inutano/run-dmc:0.1.1
     container_name: run-dmc
     environment:
       - "ES_HOST=${ES_HOST}"
