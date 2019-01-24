@@ -45,9 +45,11 @@ services:
     depends_on:
       - run-dmc
       - fluentd
-    image: telegraf:1.5.0-alpine
+    image: telegraf:${TELEGRAF_VERSION}-alpine
     container_name: telegraf
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./conf/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
       - ./log/telegraf:/var/log/telegraf
+    environment:
+      - "TELEGRAF_VERSION=${TELEGRAF_VERSION}"
